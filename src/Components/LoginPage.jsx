@@ -19,7 +19,7 @@ function LoginPage(props) {
 
         try {
             const response = await fetch(
-                "${API_URL}/auth/login",
+                `${API_URL}/auth/login`,
                 {
                     method: "POST",
                     headers: {

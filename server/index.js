@@ -15,7 +15,7 @@ const pool = new Pool({
 
 const allowedOrigins = [
     "http://localhost:5173",
-    "https://tempo-mu-dun.vercel.app"
+    "https://tempo-git-main-cloudwar727.vercel.app"
 ]
 
 
