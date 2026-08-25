@@ -17,6 +17,7 @@ import {
     useLocation
 } from "react-router-dom"
 import tempoLogo from "./assets/tempo_icon.png";
+import AccountDropdown from "./Components/AccountDropdown.jsx";
 
 function ProtectedRoute({ user, authLoading, children }) {
     if (authLoading) {
