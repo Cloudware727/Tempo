@@ -2645,3 +2645,17 @@ form button {
 form button:hover {
   background: linear-gradient(135deg, #6545cb, #5234b1);
 }
+
+.logout-button {
+    padding: 10px 18px;
+
+    border-radius: 10px;
+
+    border: 1px solid rgba(255,255,255,0.2);
+
+    background: transparent;
+
+    cursor: pointer;
+
+    font-size: 14px;
+}

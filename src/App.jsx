@@ -428,6 +428,17 @@ function App() {
         )
     }
 
+    async function logout() {
+        await fetch(`${API_URL}/auth/logout`, {
+            method: "POST",
+            credentials: "include"
+        })
+
+        setUser(null)
+        setTasks([])
+        setFocusTask(null)
+    }
+
     return (
         <div
             className={
@@ -478,6 +489,13 @@ function App() {
                             </NavLink>
 
                         </div>
+
+                        <button
+                            className="logout-button"
+                            onClick={logout}
+                        >
+                            Logout
+                        </button>
 
                         <button
                             className="add-task-toggle"

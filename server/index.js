@@ -743,6 +743,20 @@ app.post("/auth/login", async (request, response) => {
     }
 })
 
+//Logout functionality
+app.post("/auth/logout", (request, response) => {
+
+    response.clearCookie("tempo_token", {
+        httpOnly: true,
+        secure: true,
+        sameSite: "none"
+    })
+
+    response.json({
+        message: "Logged out successfully"
+    })
+})
+
 //Checks if user is authenticated/logged in by checking the jwt or cookie browser sends
 function authenticateUser(request, response, next) {
     const token = request.cookies.tempo_token
