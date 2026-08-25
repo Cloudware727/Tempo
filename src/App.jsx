@@ -455,6 +455,11 @@ function App() {
             {showAppNavigation && (
                 <div className="top-bar">
 
+                    <AccountDropdown
+                        onLogout={logout}
+                        user={user}
+                    />
+
                     <div className="brand">
                         <img
                             src={tempoLogo}
@@ -491,9 +496,6 @@ function App() {
 
                         </div>
 
-                        <AccountDropdown
-                            onLogout={logout}
-                        />
 
                         <button
                             className="add-task-toggle"

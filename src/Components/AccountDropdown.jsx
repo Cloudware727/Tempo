@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function AccountDropdown({ onLogout }) {
+function AccountDropdown({ user,onLogout }) {
 
     const [open, setOpen] = useState(false);
 
@@ -11,7 +11,7 @@ function AccountDropdown({ onLogout }) {
                 className="account-button"
                 onClick={() => setOpen(!open)}
             >
-                My Profile
+                {user?.email?.split("@")[0]}
             </button>
 
 

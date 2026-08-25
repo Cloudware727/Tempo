@@ -2721,38 +2721,133 @@ form button:hover {
   z-index:100;
 }
 
+.account-container {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+}
+
+
+.account-button {
+
+  height: 38px;
+
+  padding: 0 14px;
+
+  border-radius: 12px;
+
+  border: 1px solid rgba(120, 100, 200, 0.18);
+
+  background: rgba(255, 255, 255, 0.65);
+
+  color: #4d3aa8;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+
+.account-button:hover {
+
+  background: white;
+
+  box-shadow:
+          0 4px 12px rgba(90, 60, 180, 0.15);
+}
+
+
+.account-arrow {
+
+  font-size: 10px;
+
+  opacity: 0.65;
+
+  margin-top: 1px;
+}
+
+
+.account-menu {
+
+  position: absolute;
+
+  left: 0;
+  top: 46px;
+
+  width: 180px;
+
+  padding: 8px;
+
+  background: white;
+
+  border-radius: 12px;
+
+  border: 1px solid rgba(120,100,200,0.15);
+
+  box-shadow:
+          0 10px 25px rgba(0,0,0,0.12);
+
+  z-index: 100;
+}
+
+
+.account-email {
+
+  padding: 8px 10px;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+
+  color: #777;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
 
 
 .account-logout {
 
-  width:100%;
+  width: 100%;
 
-  padding:10px 12px;
+  padding: 9px 10px;
 
+  background: transparent;
 
-  background:none;
+  border: none;
 
-  border:none;
+  border-radius: 8px;
 
-  border-radius:8px;
+  text-align: left;
 
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
 
-  text-align:left;
+  color: #555;
 
-  font-size:14px;
+  cursor: pointer;
 
-  color:#555;
-
-
-  cursor:pointer;
-
+  transition: 0.15s ease;
 }
 
 
 .account-logout:hover {
 
-  background:#f3efff;
+  background: #f3efff;
 
-  color:#6846d8;
+  color: #6846d8;
 
 }
