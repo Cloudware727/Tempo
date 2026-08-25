@@ -455,17 +455,22 @@ function App() {
             {showAppNavigation && (
                 <div className="top-bar">
 
-                    <AccountDropdown
-                        onLogout={logout}
-                        user={user}
-                    />
+                    <div className="brand-section">
 
-                    <div className="brand">
-                        <img
-                            src={tempoLogo}
-                            alt="Tempo"
-                            className="tempo-wordmark"
+                        <AccountDropdown
+                            user={user}
+                            onLogout={logout}
                         />
+
+
+                        <div className="brand">
+                            <img
+                                src={tempoLogo}
+                                alt="Tempo"
+                                className="tempo-wordmark"
+                            />
+                        </div>
+
                     </div>
 
                     <div className="top-bar-actions">

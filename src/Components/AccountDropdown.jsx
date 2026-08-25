@@ -11,7 +11,7 @@ function AccountDropdown({ user,onLogout }) {
                 className="account-button"
                 onClick={() => setOpen(!open)}
             >
-                {user?.email?.split("@")[0]}
+                {user?.email?.charAt(0).toUpperCase()}
             </button>
 
 
