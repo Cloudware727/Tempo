@@ -94,7 +94,7 @@ function App() {
 
         async function loadTasks() {
             const response = await fetch(
-                "${API_URL}/tasks",
+                `${API_URL}/tasks`,
                 {
                     credentials: "include"
                 }
@@ -132,7 +132,7 @@ function App() {
 
     async function logWork(id, hours) {
         const response = await fetch(
-            "${API_URL}/tasks/" + id,
+            `${API_URL}/tasks` + id,
             {
                 method: "PATCH",
                 headers: {
