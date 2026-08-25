@@ -5,6 +5,7 @@ import "../AuthPages.css"
 
 function RegisterPage() {
     const navigate = useNavigate()
+    const API_URL = import.meta.env.VITE_API_URL
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
