@@ -15,14 +15,27 @@ const pool = new Pool({
 
 const allowedOrigins = [
     "http://localhost:5173",
-    "https://tempo-git-main-cloudwar727.vercel.app"
-]
-
+    "https://tempo-mu-dun.vercel.app"
+];
 
 app.use(cors({
-    origin: allowedOrigins,
+    origin: function (origin, callback) {
+
+        if (!origin) {
+            return callback(null, true);
+        }
+
+        if (
+            allowedOrigins.includes(origin) ||
+            origin.endsWith(".vercel.app")
+        ) {
+            return callback(null, true);
+        }
+
+        callback(new Error("Not allowed by CORS"));
+    },
     credentials: true
-}))
+}));
 app.use(express.json())
 app.use(cookieParser())
 
