@@ -81,7 +81,7 @@ function App() {
         }
         checkAuthentication()
 
-    },[])
+    },[API_URL])
 
 
     useEffect(() => {
@@ -111,7 +111,7 @@ function App() {
 
     async function addTask(task) {
         const response = await fetch(
-            "http://localhost:3000/tasks",
+            `${API_URL}/tasks`,
             {
                 method: "POST",
                 headers: {
@@ -132,7 +132,7 @@ function App() {
 
     async function logWork(id, hours) {
         const response = await fetch(
-            `${API_URL}/tasks` + id,
+            `${API_URL}/tasks/${id}`,
             {
                 method: "PATCH",
                 headers: {
