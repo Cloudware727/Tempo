@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function AccountDropdown({ user,onLogout }) {
+function AccountDropdown({ user, onLogout }) {
 
     const [open, setOpen] = useState(false);
 
@@ -17,6 +17,11 @@ function AccountDropdown({ user,onLogout }) {
 
             {open && (
                 <div className="account-menu">
+
+                    <div className="account-email">
+                        {user?.email}
+                    </div>
+
 
                     <button
                         className="account-logout"

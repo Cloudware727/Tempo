@@ -2646,199 +2646,125 @@ form button:hover {
   background: linear-gradient(135deg, #6545cb, #5234b1);
 }
 
-.account-container {
-  position: relative;
-}
-
-
-.account-button {
-
-  width:38px;
-  height:38px;
-
-  border-radius:50%;
-
-  border:1px solid rgba(120,100,200,0.2);
-
-  background:
-          linear-gradient(
-                  135deg,
-                  #eee8ff,
-                  #ffffff
-          );
-
-  color:#6046d8;
-
-  font-family:inherit;
-  font-size:14px;
-  font-weight:700;
-
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-
-  cursor:pointer;
-
-  transition:0.2s ease;
-}
-
-
-.account-button:hover {
-
-  transform:translateY(-1px);
-
-  box-shadow:
-          0 5px 15px rgba(90,60,180,0.18);
-
-}
-
-
-.account-menu {
-
-  position:absolute;
-
-  right:0;
-
-  top:48px;
-
-
-  width:140px;
-
-  padding:8px;
-
-
-  background:white;
-
-  border-radius:12px;
-
-
-  border:1px solid rgba(120,100,200,0.12);
-
-
-  box-shadow:
-          0 12px 30px rgba(0,0,0,0.12);
-
-
-  z-index:100;
-}
+/* =========================
+   ACCOUNT / PROFILE
+========================= */
 
 .account-container {
   position: relative;
 
   display: flex;
   align-items: center;
+
+  margin-left: 20px;
 }
 
 
+/* Circle avatar */
+
 .account-button {
 
-  width:38px;
-  height:38px;
+  width: 38px;
+  height: 38px;
 
-  border-radius:50%;
+  border-radius: 50%;
 
-  border:1px solid rgba(120,100,200,0.2);
+  border: 1px solid rgba(120, 100, 200, 0.18);
 
   background:
           linear-gradient(
                   135deg,
-                  #eee8ff,
+                  #f4efff,
                   #ffffff
           );
 
-  color:#6046d8;
+  color: #6846d8;
 
-  font-family:inherit;
-  font-size:14px;
-  font-weight:700;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  cursor: pointer;
 
-
-  cursor:pointer;
-
-  transition:0.2s ease;
+  transition: all 0.2s ease;
 }
 
 
 .account-button:hover {
 
-  transform:translateY(-1px);
+  transform: translateY(-1px);
 
   box-shadow:
-          0 5px 15px rgba(90,60,180,0.18);
-
+          0 6px 15px rgba(100,70,200,0.18);
 }
 
 
-.account-arrow {
-
-  font-size: 10px;
-
-  opacity: 0.65;
-
-  margin-top: 1px;
-}
-
+/* Dropdown */
 
 .account-menu {
 
   position: absolute;
 
   left: 0;
-  top: 46px;
+  top: 48px;
 
-  width: 180px;
+  width: 220px;
 
   padding: 8px;
 
   background: white;
 
-  border-radius: 12px;
+  border-radius: 14px;
 
-  border: 1px solid rgba(120,100,200,0.15);
+  border: 1px solid rgba(120,100,200,0.12);
 
   box-shadow:
-          0 10px 25px rgba(0,0,0,0.12);
+          0 12px 30px rgba(0,0,0,0.12);
 
-  z-index: 100;
+  z-index: 1000;
 }
 
 
+/* Email */
+
 .account-email {
 
-  padding: 8px 10px;
+  padding: 10px 12px;
 
   font-family: inherit;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 600;
 
-  color: #777;
+  color: #596080;
 
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 
-  border-bottom: 1px solid rgba(0,0,0,0.08);
+  border-bottom:
+          1px solid rgba(0,0,0,0.08);
 }
 
+
+/* Logout */
 
 .account-logout {
 
   width: 100%;
 
-  padding: 9px 10px;
+  margin-top: 6px;
+
+  padding: 10px 12px;
 
   background: transparent;
 
   border: none;
 
-  border-radius: 8px;
+  border-radius: 10px;
 
   text-align: left;
 
@@ -2861,11 +2787,7 @@ form button:hover {
   color: #6846d8;
 
 }
+
 .brand-section {
-
-  display:flex;
-
-  align-items:center;
-
-  gap:75px;
+  gap: 24px;
 }
