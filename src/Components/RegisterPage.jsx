@@ -28,7 +28,7 @@ function RegisterPage() {
 
         try {
             const response = await fetch(
-                "http://localhost:3000/auth/register",
+                "${API_URL}/auth/register",
                 {
                     method: "POST",
                     headers: {

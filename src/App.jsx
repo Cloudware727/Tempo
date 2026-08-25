@@ -36,6 +36,7 @@ function App() {
     const [showTaskForm, setShowTaskForm] = useState(false);
     const [focusTask, setFocusTask] = useState(null);
     const [tasksLoaded, setTasksLoaded] = useState(false)
+    const API_URL = import.meta.env.VITE_API_URL
 
     //To authenticate users
     const [user, setUser] = useState(null)
@@ -51,7 +52,7 @@ function App() {
         async function checkAuthentication(){
             try{
                 const response = await fetch(
-                    "http://localhost:3000/auth/me",
+                    `${API_URL}/auth/me`,
                     {
                         credentials: "include"
                     }
@@ -93,7 +94,7 @@ function App() {
 
         async function loadTasks() {
             const response = await fetch(
-                "http://localhost:3000/tasks",
+                "${API_URL}/tasks",
                 {
                     credentials: "include"
                 }
@@ -131,7 +132,7 @@ function App() {
 
     async function logWork(id, hours) {
         const response = await fetch(
-            "http://localhost:3000/tasks/" + id,
+            "${API_URL}/tasks/" + id,
             {
                 method: "PATCH",
                 headers: {
@@ -161,7 +162,7 @@ function App() {
 
     async function toggleStage(stageId, completed) {
         const response = await fetch(
-            `http://localhost:3000/stages/${stageId}`,
+            `${API_URL}/stages/${stageId}`,
             {
                 method: "PATCH",
                 headers: {
@@ -198,7 +199,7 @@ function App() {
 
     async function editStage(stageId, updatedDetails) {
         const response = await fetch(
-            `http://localhost:3000/stages/${stageId}/details`,
+            `${API_URL}/stages/${stageId}/details`,
             {
                 method: "PATCH",
                 headers: {
@@ -233,7 +234,7 @@ function App() {
 
     async function addStage(taskId, stageDetails) {
         const response = await fetch(
-            `http://localhost:3000/tasks/${taskId}/stages`,
+            `${API_URL}/tasks/${taskId}/stages`,
             {
                 method: "POST",
                 headers: {
@@ -269,7 +270,7 @@ function App() {
 
     async function deleteStage(stageId) {
         const response = await fetch(
-            `http://localhost:3000/stages/${stageId}`,
+            `${API_URL}/stages/${stageId}`,
             {
                 method: "DELETE",
                 credentials: "include"
@@ -300,7 +301,7 @@ function App() {
 
     async function extendEstimatedTime(id,minutes){
         const response = await fetch(
-            `http://localhost:3000/tasks/${id}/estimate`,
+            `${API_URL}/tasks/${id}/estimate`,
             {
                 method: "PATCH",
                 headers: {
@@ -335,7 +336,7 @@ function App() {
 
     async function deleteTask(id) {
         const response = await fetch(
-            `http://localhost:3000/tasks/${id}`,
+            `${API_URL}/tasks/${id}`,
             {
                 method: "DELETE",
                 headers: {
@@ -360,7 +361,7 @@ function App() {
 
     async function completeTask(id) {
         const response = await fetch(
-            `http://localhost:3000/tasks/${id}/complete`,
+            `${API_URL}/tasks/${id}/complete`,
             {
                 method: "PATCH",
                 headers: {
@@ -394,7 +395,7 @@ function App() {
     //async functions for tasks and calendar
     async function editTask(id, updatedDetails) {
         const response = await fetch(
-            `http://localhost:3000/tasks/${id}/details`,
+            `${API_URL}/tasks/${id}/details`,
             {
                 method: "PATCH",
                 headers: {

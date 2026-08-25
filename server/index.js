@@ -13,8 +13,14 @@ const pool = new Pool({
     connectionString: process.env.DATABASE_URL
 })
 
+const allowedOrigins = [
+    "http://localhost:5173",
+    "https://tempo-mu-dun.vercel.app"
+]
+
+
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: allowedOrigins,
     credentials: true
 }))
 app.use(express.json())
@@ -705,8 +711,8 @@ app.post("/auth/login", async (request, response) => {
 
         response.cookie("tempo_token", token, {
             httpOnly: true,
-            secure: false,
-            sameSite: "lax",
+            secure: process.env.NODE_ENV === "production",
+            sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
             maxAge: 7 * 24 * 60 * 60 * 1000
         })
 
