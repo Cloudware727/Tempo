@@ -2787,3 +2787,130 @@ form button:hover {
   color: #6846d8;
 
 }
+
+/* =========================================================
+   TEMPO MOBILE OVERRIDES
+   Added without changing desktop layout
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  .app {
+    width: 94%;
+    padding-top: 16px;
+  }
+
+  /* Header:
+     Logo stays left, navigation moves below */
+  .top-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .brand {
+    justify-content: flex-start;
+  }
+
+  .tempo-wordmark {
+    width: 155px;
+  }
+
+  .brand-tagline {
+    display: none;
+  }
+
+  .top-bar-actions {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-left: 0;
+  }
+
+  .view-switch {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .view-button {
+    flex: 1;
+    padding: 0 10px;
+  }
+
+  .add-task-toggle {
+    width: 100%;
+  }
+
+
+  /* Active tasks first */
+  .task-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+    margin-top: 25px;
+  }
+
+  .tasks-section {
+    order: 1;
+  }
+
+  .right-sidebar {
+    order: 2;
+    gap: 26px;
+  }
+
+  /* Cards */
+  .tasks-section .task-card {
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .task-card-top h2 {
+    font-size: 17px;
+  }
+
+
+  /* Waiting and completed remain expanded but lighter */
+  .waiting-card,
+  .completed-section .task-card {
+    padding: 15px;
+    border-radius: 15px;
+  }
+
+  .waiting-header h2,
+  .completed-header h2,
+  .tasks-header h2 {
+    font-size: 20px;
+  }
+
+
+  /* Form */
+  form {
+    padding: 16px;
+    gap: 12px;
+  }
+
+
+  /* Buttons easier on touch screens */
+  .task-card-bottom {
+    flex-direction: column;
+  }
+
+  .task-card-bottom button,
+  .edit-task-button,
+  .complete-task-button,
+  .delete-button {
+    width: 100%;
+    margin-left: 0;
+  }
+
+
+  /* Reduce floating timer size/importance */
+  .focus-timer {
+    width: min(290px, 90vw);
+    right: 5vw;
+    bottom: 18px;
+  }
+}
