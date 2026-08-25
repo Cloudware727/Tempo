@@ -490,12 +490,9 @@ function App() {
 
                         </div>
 
-                        <button
-                            className="logout-button"
-                            onClick={logout}
-                        >
-                            Logout
-                        </button>
+                        <AccountDropdown
+                            onLogout={logout}
+                        />
 
                         <button
                             className="add-task-toggle"
