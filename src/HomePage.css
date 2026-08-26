@@ -1731,24 +1731,18 @@
    Desktop layout remains unchanged
    ========================================================= */
 
-
-/* =========================================================
-   MOBILE HOMEPAGE
-   ========================================================= */
-
 @media (max-width: 700px) {
 
-
-    /* -----------------------------------------------------
+    /* =========================
        HEADER
-       ----------------------------------------------------- */
+       ========================= */
+
+    .home-header {
+        padding: 18px 0 8px;
+    }
 
     .home-header-inner {
         width: 92%;
-    }
-
-    .home-header {
-        padding: 18px 0;
     }
 
     .home-logo {
@@ -1762,122 +1756,126 @@
     .home-login,
     .home-signup {
         height: 38px;
-
         padding: 0 11px;
-
         font-size: 11px;
     }
 
 
-
-    /* -----------------------------------------------------
+    /* =========================
        HERO TEXT
-       ----------------------------------------------------- */
+       ========================= */
 
     .home-hero {
-
         width: 92%;
-
         min-height: auto;
-
-        padding:
-                45px 0
-                70px;
 
         display: flex;
         flex-direction: column;
-    }
+        align-items: center;
 
-
-    .home-hero-copy {
-
-        width: 100%;
+        padding: 36px 0 56px;
 
         text-align: center;
-
-        align-items: center;
     }
 
+    .home-hero-copy {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        text-align: center;
+    }
 
     .home-eyebrow {
-
+        margin-bottom: 18px;
         font-size: 8px;
     }
 
-
     .home-hero h1 {
+        max-width: 340px;
 
-        font-size:
-                clamp(42px, 12vw, 58px);
-
-        line-height: 1;
-
+        font-size: clamp(40px, 12vw, 56px);
+        line-height: 1.02;
         letter-spacing: -0.05em;
     }
 
+    .home-hero h1 span {
+        width: auto;
+        margin: 0 auto;
 
-    .home-hero-description {
-
-        font-size: 14px;
-
-        max-width: 330px;
-
-        margin-left: auto;
-        margin-right: auto;
+        padding-right: 0;
+        padding-bottom: 6px;
     }
 
+    .home-hero-description {
+        max-width: 310px;
+
+        margin-top: 22px;
+
+        font-size: 13px;
+        line-height: 1.65;
+    }
 
     .home-hero-actions {
-
         width: 100%;
 
         flex-direction: column;
-
         align-items: stretch;
-    }
 
+        margin-top: 26px;
+    }
 
     .home-primary-cta,
     .home-secondary-cta {
-
         width: 100%;
+        min-height: 48px;
+    }
+
+    .home-mini-features {
+        justify-content: center;
+        gap: 9px 12px;
+
+        margin-top: 20px;
+
+        font-size: 9px;
     }
 
 
-
-    /* -----------------------------------------------------
-       HERO ANIMATION
-       Convert desktop floating layout
-       into vertical mobile story
-       ----------------------------------------------------- */
-
+    /* =========================
+       HERO VISUAL
+       Convert floating desktop scene into mobile stack
+       ========================= */
 
     .home-hero-preview {
-
         width: 100%;
-
+        max-width: 100%;
         height: auto;
 
-        margin:
-                45px 0
-                0;
+        margin: 42px 0 0;
 
         display: flex;
-
         flex-direction: column;
-
         align-items: center;
+        gap: 22px;
 
-        gap: 24px;
+        overflow: visible;
 
         transform: none !important;
     }
 
+    .hero-preview-glow {
+        width: 280px;
+        height: 280px;
+
+        left: 50%;
+        top: 38%;
+    }
 
     .hero-task-card,
     .hero-floating-timer,
     .hero-floating-waiting {
-
         position: relative;
 
         left: auto;
@@ -1885,149 +1883,135 @@
         top: auto;
         bottom: auto;
 
-        transform: none;
+        translate: 0 0;
+        transform: none !important;
     }
-
 
     .hero-task-card {
+        width: 100%;
+        max-width: 330px;
 
-        width: 90%;
-
-        max-width: 380px;
-
-        padding: 20px;
+        padding: 18px;
     }
 
+    .hero-task-card h3 {
+        font-size: 16px;
+    }
+
+    .hero-task-pills span {
+        font-size: 8px;
+    }
 
     .hero-floating-timer {
-
-        width: 145px;
-
-        height: 145px;
-
-        order: 2;
+        width: 138px;
+        height: 138px;
     }
 
+    .hero-timer-ring {
+        width: 98px;
+        height: 98px;
+    }
+
+    .hero-timer-ring > div {
+        width: 76px;
+        height: 76px;
+    }
 
     .hero-floating-waiting {
-
-        width: 90%;
-
+        width: 100%;
         max-width: 300px;
 
-        order: 3;
+        padding: 15px;
     }
 
 
-
-    /* -----------------------------------------------------
+    /* =========================
        STORY SECTIONS
-       ----------------------------------------------------- */
-
+       ========================= */
 
     .home-story-section,
     .home-story-section.reverse {
+        min-height: auto;
 
-        padding:
-                75px 0;
+        padding: 70px 0;
 
         gap: 30px;
     }
 
-
     .home-story-copy {
-
         text-align: center;
-
     }
-
 
     .home-story-copy h2 {
-
         font-size: 36px;
+        line-height: 1.08;
     }
-
 
     .home-story-copy p {
-
         font-size: 13px;
+        line-height: 1.65;
+    }
+
+    .home-story-visual {
+        min-height: auto;
     }
 
 
-
-    /* -----------------------------------------------------
+    /* =========================
        PLAN VISUAL
-       ----------------------------------------------------- */
-
+       ========================= */
 
     .plan-visual-card {
-
         width: 100%;
+
+        padding: 20px;
 
         transform: none;
     }
 
-
     .plan-stat-row {
-
         grid-template-columns: 1fr;
-
     }
 
 
-
-    /* -----------------------------------------------------
+    /* =========================
        FOCUS VISUAL
-       ----------------------------------------------------- */
-
+       ========================= */
 
     .focus-story-stage {
-
         width: 100%;
-
         min-height: auto;
 
         transform: none;
     }
 
-
     .focus-story-window {
-
         width: 100%;
     }
 
-
     .focus-story-content {
-
         height: 270px;
     }
 
 
-
-    /* -----------------------------------------------------
+    /* =========================
        WAITING VISUAL
-       ----------------------------------------------------- */
-
+       ========================= */
 
     .waiting-story-stage {
-
         width: 100%;
-
         min-height: auto;
 
         display: flex;
-
         flex-direction: column;
-
         align-items: center;
-
         gap: 20px;
-    }
 
+        transform: none;
+    }
 
     .waiting-story-card,
     .waiting-follow-card {
-
         position: relative;
 
         left: auto;
@@ -2035,109 +2019,97 @@
         top: auto;
         bottom: auto;
 
-        width: 90%;
+        width: 100%;
+        max-width: 315px;
     }
 
-
     .waiting-connector {
-
         display: none;
     }
 
 
-
-    /* -----------------------------------------------------
+    /* =========================
        CALENDAR VISUAL
-       ----------------------------------------------------- */
-
+       ========================= */
 
     .calendar-story-card {
-
         width: 100%;
 
         transform: none;
-
     }
-
 
     .calendar-story-header {
-
-        padding: 16px;
+        padding: 15px;
     }
 
+    .calendar-story-header h3 {
+        font-size: 14px;
+    }
+
+    .calendar-weekdays {
+        padding: 10px 5px 6px;
+    }
 
     .calendar-grid {
-
-        padding:
-                0 5px
-                10px;
+        padding: 0 5px 10px;
     }
 
-
     .calendar-day {
-
-        min-height: 48px;
-
+        min-height: 45px;
         padding: 4px;
     }
 
-
-    .calendar-task-pill {
-
-        display: none;
-    }
-
-
     .calendar-day > span {
-
         width: 18px;
-
         height: 18px;
 
         font-size: 7px;
     }
 
+    .calendar-task-pill {
+        display: none;
+    }
 
 
-    /* -----------------------------------------------------
+    /* =========================
        FINAL CTA
-       ----------------------------------------------------- */
-
+       ========================= */
 
     .home-final-cta {
-
         width: 90%;
 
         margin-top: 55px;
-
         margin-bottom: 60px;
 
-        padding:
-                55px 20px;
+        padding: 55px 20px;
     }
-
 
     .home-final-cta h2 {
+        font-size: 38px;
+        line-height: 1.08;
+    }
 
-        font-size: 40px;
+    .home-final-cta p {
+        font-size: 13px;
+    }
+
+    .home-final-button {
+        width: 100%;
+        justify-content: center;
     }
 
 
-
-    /* -----------------------------------------------------
+    /* =========================
        FOOTER
-       ----------------------------------------------------- */
-
+       ========================= */
 
     .home-footer {
-
         width: 90%;
-
-        gap: 18px;
 
         flex-direction: column;
 
+        gap: 18px;
+
         text-align: center;
     }
-
 }
