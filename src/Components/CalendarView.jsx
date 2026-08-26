@@ -144,21 +144,32 @@ function CalendarView(props) {
                 plugins={[dayGridPlugin]}
                 initialView="dayGridMonth"
                 events={events}
+
                 eventClick={(clickInfo) => {
                     setSelectedTask(clickInfo.event.extendedProps.task)
                 }}
+
                 eventContent={(eventInfo) => (
-                    <div className="calendar-task-event">
-                        <strong>{eventInfo.event.title}</strong>
+                    <div
+                        className="calendar-task-event"
+                        style={{
+                            backgroundColor: eventInfo.event.backgroundColor,
+                            color: eventInfo.event.extendedProps.contrastColor
+                        }}
+                    >
+                        <strong>
+                            {eventInfo.event.title}
+                        </strong>
 
                         <span>
                         {eventInfo.event.extendedProps.completed
                             ? "Completed"
-                            : `${eventInfo.event.extendedProps.remainingEffort.toFixed(1)}h left`}
+                            : `${formatHours(eventInfo.event.extendedProps.remainingEffort)} left`}
                     </span>
                     </div>
                 )}
             />
+
 
             {selectedTask && (
                 <div
@@ -180,35 +191,45 @@ function CalendarView(props) {
                         Task details
                     </span>
 
-                        <h3>{selectedTask.title}</h3>
+                        <h3>
+                            {selectedTask.title}
+                        </h3>
 
                         <div className="calendar-task-modal-info">
+
                             <p>
-                                <strong>Due:</strong> {selectedTask.deadline}
+                                <strong>Due:</strong>{" "}
+                                {selectedTask.deadline}
                             </p>
 
                             <p>
-                                <strong>Total:</strong> {selectedTask.estimatedEffort}h
+                                <strong>Total:</strong>{" "}
+                                {formatHours(Number(selectedTask.estimatedEffort))}
                             </p>
 
                             <p>
-                                <strong>Done:</strong> {selectedTask.completedEffort}h
+                                <strong>Done:</strong>{" "}
+                                {formatHours(Number(selectedTask.completedEffort))}
                             </p>
 
                             <p>
                                 <strong>Remaining:</strong>{" "}
-                                {Math.max(
-                                    Number(selectedTask.estimatedEffort) -
-                                    Number(selectedTask.completedEffort),
-                                    0
-                                ).toFixed(1)}
-                                h
+                                {formatHours(
+                                    Math.max(
+                                        Number(selectedTask.estimatedEffort) -
+                                        Number(selectedTask.completedEffort),
+                                        0
+                                    )
+                                )}
                             </p>
 
                             <p>
                                 <strong>Status:</strong>{" "}
-                                {selectedTask.completed ? "Completed" : "Active"}
+                                {selectedTask.completed
+                                    ? "Completed"
+                                    : "Active"}
                             </p>
+
                         </div>
                     </div>
                 </div>
@@ -217,5 +238,4 @@ function CalendarView(props) {
         </div>
     )
 }
-
 export default CalendarView
