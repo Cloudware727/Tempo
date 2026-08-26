@@ -2914,3 +2914,103 @@ form button:hover {
     bottom: 18px;
   }
 }
+
+/* =========================================================
+   MOBILE CALENDAR POLISH
+   Desktop calendar remains unchanged
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  .calendar-page {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .calendar-view {
+    width: 100%;
+    min-width: 0;
+
+    margin-top: 16px;
+    padding: 10px;
+
+    overflow-x: hidden;
+
+    border-radius: 16px;
+  }
+
+  .calendar-view .fc {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .calendar-view .fc-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 10px;
+  }
+
+  .calendar-view .fc-toolbar-chunk {
+    display: flex;
+    justify-content: center;
+  }
+
+  .calendar-view .fc-toolbar-title {
+    font-size: 17px;
+    text-align: center;
+  }
+
+  .calendar-view .fc-button {
+    padding: 5px 8px;
+
+    font-size: 10px;
+  }
+
+  .calendar-view .fc-col-header-cell-cushion,
+  .calendar-view .fc-daygrid-day-number {
+    font-size: 10px;
+  }
+
+  .calendar-view .fc-daygrid-day-frame {
+    min-height: 72px;
+  }
+
+  .calendar-view .fc-daygrid-day {
+    padding: 0;
+  }
+
+  .calendar-view .fc-daygrid-event {
+    margin: 1px 2px;
+
+    border-radius: 6px;
+  }
+
+  .calendar-task-event {
+    padding: 3px 4px;
+
+    gap: 0;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+  }
+
+  .calendar-task-event strong {
+    max-width: 100%;
+
+    font-size: 8px;
+    line-height: 1.1;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    word-break: normal;
+  }
+
+  .calendar-task-event span {
+    display: none;
+  }
+}
