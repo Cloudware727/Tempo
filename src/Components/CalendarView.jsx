@@ -131,7 +131,9 @@ function CalendarView(props) {
                 task,
                 remainingEffort,
                 completed: task.completed,
-                status
+                status,
+                color: colors.color,
+                contrastColor: colors.contrastColor
             }
         }
     })
@@ -153,7 +155,7 @@ function CalendarView(props) {
                     <div
                         className="calendar-task-event"
                         style={{
-                            backgroundColor: eventInfo.event.backgroundColor,
+                            backgroundColor: eventInfo.event.extendedProps.color,
                             color: eventInfo.event.extendedProps.contrastColor
                         }}
                     >
@@ -161,11 +163,11 @@ function CalendarView(props) {
                             {eventInfo.event.title}
                         </strong>
 
-                        <span>
-                        {eventInfo.event.extendedProps.completed
-                            ? "Completed"
-                            : `${formatHours(eventInfo.event.extendedProps.remainingEffort)} left`}
-                    </span>
+                            <span>
+                                {eventInfo.event.extendedProps.completed
+                                    ? "Completed"
+                                    : `${formatHours(eventInfo.event.extendedProps.remainingEffort)} left`}
+                            </span>
                     </div>
                 )}
             />
