@@ -1727,11 +1727,21 @@
 
 
 /* =========================================================
-   TEMPO LANDING MOBILE POLISH
-   Does not affect desktop layout
+   TEMPO LANDING MOBILE OVERRIDES
+   Desktop layout remains unchanged
+   ========================================================= */
+
+
+/* =========================================================
+   MOBILE HOMEPAGE
    ========================================================= */
 
 @media (max-width: 700px) {
+
+
+    /* -----------------------------------------------------
+       HEADER
+       ----------------------------------------------------- */
 
     .home-header-inner {
         width: 92%;
@@ -1749,42 +1759,385 @@
         gap: 7px;
     }
 
+    .home-login,
+    .home-signup {
+        height: 38px;
 
-    .home-hero {
-        width: 92%;
-        padding-top: 40px;
+        padding: 0 11px;
+
+        font-size: 11px;
     }
 
+
+
+    /* -----------------------------------------------------
+       HERO TEXT
+       ----------------------------------------------------- */
+
+    .home-hero {
+
+        width: 92%;
+
+        min-height: auto;
+
+        padding:
+                45px 0
+                70px;
+
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    .home-hero-copy {
+
+        width: 100%;
+
+        text-align: center;
+
+        align-items: center;
+    }
+
+
+    .home-eyebrow {
+
+        font-size: 8px;
+    }
+
+
     .home-hero h1 {
-        font-size: clamp(42px, 12vw, 58px);
+
+        font-size:
+                clamp(42px, 12vw, 58px);
+
+        line-height: 1;
+
+        letter-spacing: -0.05em;
+    }
+
+
+    .home-hero-description {
+
+        font-size: 14px;
+
+        max-width: 330px;
+
+        margin-left: auto;
+        margin-right: auto;
     }
 
 
     .home-hero-actions {
+
         width: 100%;
+
         flex-direction: column;
+
+        align-items: stretch;
     }
+
 
     .home-primary-cta,
     .home-secondary-cta {
+
         width: 100%;
     }
 
 
-    /* Keep preview visible but less overwhelming */
+
+    /* -----------------------------------------------------
+       HERO ANIMATION
+       Convert desktop floating layout
+       into vertical mobile story
+       ----------------------------------------------------- */
+
+
     .home-hero-preview {
-        transform: translateX(-50%) scale(0.65) !important;
-        margin-bottom: -150px;
+
+        width: 100%;
+
+        height: auto;
+
+        margin:
+                45px 0
+                0;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 24px;
+
+        transform: none !important;
     }
+
+
+    .hero-task-card,
+    .hero-floating-timer,
+    .hero-floating-waiting {
+
+        position: relative;
+
+        left: auto;
+        right: auto;
+        top: auto;
+        bottom: auto;
+
+        transform: none;
+    }
+
+
+    .hero-task-card {
+
+        width: 90%;
+
+        max-width: 380px;
+
+        padding: 20px;
+    }
+
+
+    .hero-floating-timer {
+
+        width: 145px;
+
+        height: 145px;
+
+        order: 2;
+    }
+
+
+    .hero-floating-waiting {
+
+        width: 90%;
+
+        max-width: 300px;
+
+        order: 3;
+    }
+
+
+
+    /* -----------------------------------------------------
+       STORY SECTIONS
+       ----------------------------------------------------- */
 
 
     .home-story-section,
     .home-story-section.reverse {
-        padding: 70px 0;
+
+        padding:
+                75px 0;
+
+        gap: 30px;
     }
+
+
+    .home-story-copy {
+
+        text-align: center;
+
+    }
+
+
+    .home-story-copy h2 {
+
+        font-size: 36px;
+    }
+
+
+    .home-story-copy p {
+
+        font-size: 13px;
+    }
+
+
+
+    /* -----------------------------------------------------
+       PLAN VISUAL
+       ----------------------------------------------------- */
+
+
+    .plan-visual-card {
+
+        width: 100%;
+
+        transform: none;
+    }
+
+
+    .plan-stat-row {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+
+    /* -----------------------------------------------------
+       FOCUS VISUAL
+       ----------------------------------------------------- */
+
+
+    .focus-story-stage {
+
+        width: 100%;
+
+        min-height: auto;
+
+        transform: none;
+    }
+
+
+    .focus-story-window {
+
+        width: 100%;
+    }
+
+
+    .focus-story-content {
+
+        height: 270px;
+    }
+
+
+
+    /* -----------------------------------------------------
+       WAITING VISUAL
+       ----------------------------------------------------- */
+
+
+    .waiting-story-stage {
+
+        width: 100%;
+
+        min-height: auto;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 20px;
+    }
+
+
+    .waiting-story-card,
+    .waiting-follow-card {
+
+        position: relative;
+
+        left: auto;
+        right: auto;
+        top: auto;
+        bottom: auto;
+
+        width: 90%;
+    }
+
+
+    .waiting-connector {
+
+        display: none;
+    }
+
+
+
+    /* -----------------------------------------------------
+       CALENDAR VISUAL
+       ----------------------------------------------------- */
+
+
+    .calendar-story-card {
+
+        width: 100%;
+
+        transform: none;
+
+    }
+
+
+    .calendar-story-header {
+
+        padding: 16px;
+    }
+
+
+    .calendar-grid {
+
+        padding:
+                0 5px
+                10px;
+    }
+
+
+    .calendar-day {
+
+        min-height: 48px;
+
+        padding: 4px;
+    }
+
+
+    .calendar-task-pill {
+
+        display: none;
+    }
+
+
+    .calendar-day > span {
+
+        width: 18px;
+
+        height: 18px;
+
+        font-size: 7px;
+    }
+
+
+
+    /* -----------------------------------------------------
+       FINAL CTA
+       ----------------------------------------------------- */
 
 
     .home-final-cta {
-        padding: 55px 20px;
+
+        width: 90%;
+
+        margin-top: 55px;
+
+        margin-bottom: 60px;
+
+        padding:
+                55px 20px;
     }
+
+
+    .home-final-cta h2 {
+
+        font-size: 40px;
+    }
+
+
+
+    /* -----------------------------------------------------
+       FOOTER
+       ----------------------------------------------------- */
+
+
+    .home-footer {
+
+        width: 90%;
+
+        gap: 18px;
+
+        flex-direction: column;
+
+        text-align: center;
+    }
+
 }
