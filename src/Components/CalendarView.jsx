@@ -5,9 +5,12 @@ import themePlugin from "@fullcalendar/react/themes/classic"
 import "@fullcalendar/react/skeleton.css"
 import "@fullcalendar/react/themes/classic/theme.css"
 import "@fullcalendar/react/themes/classic/palette.css"
+import {useState} from "react";
 
 
 function CalendarView(props) {
+
+    const [selectedTask, setSelectedTask] = useState(null);
 
     function getTaskStatus(task) {
         if (task.completed) {
@@ -125,6 +128,7 @@ function CalendarView(props) {
             colors.contrastColor,
 
             extendedProps: {
+                task,
                 remainingEffort,
                 completed: task.completed,
                 status
@@ -137,38 +141,78 @@ function CalendarView(props) {
         <div className="calendar-view">
 
             <FullCalendar
-                plugins={[
-                    themePlugin,
-                    dayGridPlugin
-                ]}
-
+                plugins={[dayGridPlugin]}
                 initialView="dayGridMonth"
-
                 events={events}
-
-                height="calc(100vh - 190px)"
-
-                eventContent={(info) => (
+                eventClick={(clickInfo) => {
+                    setSelectedTask(clickInfo.event.extendedProps.task)
+                }}
+                eventContent={(eventInfo) => (
                     <div className="calendar-task-event">
-
-                        <strong>
-                            {info.event.title}
-                        </strong>
+                        <strong>{eventInfo.event.title}</strong>
 
                         <span>
-                            {
-                                info.event.extendedProps.completed
-                                    ? "Completed"
-                                    : `${formatHours(
-                                        info.event.extendedProps
-                                            .remainingEffort
-                                    )} left`
-                            }
-                        </span>
-
+                        {eventInfo.event.extendedProps.completed
+                            ? "Completed"
+                            : `${eventInfo.event.extendedProps.remainingEffort.toFixed(1)}h left`}
+                    </span>
                     </div>
                 )}
             />
+
+            {selectedTask && (
+                <div
+                    className="calendar-task-modal"
+                    onClick={() => setSelectedTask(null)}
+                >
+                    <div
+                        className="calendar-task-modal-card"
+                        onClick={(event) => event.stopPropagation()}
+                    >
+                        <button
+                            className="calendar-task-modal-close"
+                            onClick={() => setSelectedTask(null)}
+                        >
+                            ×
+                        </button>
+
+                        <span className="calendar-task-modal-label">
+                        Task details
+                    </span>
+
+                        <h3>{selectedTask.title}</h3>
+
+                        <div className="calendar-task-modal-info">
+                            <p>
+                                <strong>Due:</strong> {selectedTask.deadline}
+                            </p>
+
+                            <p>
+                                <strong>Total:</strong> {selectedTask.estimatedEffort}h
+                            </p>
+
+                            <p>
+                                <strong>Done:</strong> {selectedTask.completedEffort}h
+                            </p>
+
+                            <p>
+                                <strong>Remaining:</strong>{" "}
+                                {Math.max(
+                                    Number(selectedTask.estimatedEffort) -
+                                    Number(selectedTask.completedEffort),
+                                    0
+                                ).toFixed(1)}
+                                h
+                            </p>
+
+                            <p>
+                                <strong>Status:</strong>{" "}
+                                {selectedTask.completed ? "Completed" : "Active"}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            )}
 
         </div>
     )

@@ -3014,3 +3014,160 @@ form button:hover {
     display: none;
   }
 }
+/* =========================================================
+   CALENDAR TASK EXPANSION MODAL
+   ========================================================= */
+
+.calendar-task-modal {
+  position: fixed;
+  inset: 0;
+
+  z-index: 3000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  background: rgba(20, 18, 42, 0.28);
+
+  backdrop-filter: blur(4px);
+}
+
+.calendar-task-modal-card {
+  position: relative;
+
+  width: min(420px, 100%);
+
+  padding: 24px;
+
+  border-radius: 24px;
+
+  background: rgba(255, 255, 255, 0.98);
+
+  border: 1px solid #ddd7ea;
+
+  box-shadow:
+          0 24px 60px rgba(35, 28, 74, 0.22);
+}
+
+.calendar-task-modal-close {
+  position: absolute;
+
+  top: 14px;
+  right: 14px;
+
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #eadde3;
+  border-radius: 10px;
+
+  background: #fff5f6;
+  color: #c25565;
+
+  font: inherit;
+  font-size: 20px;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+.calendar-task-modal-label {
+  display: inline-flex;
+
+  margin-bottom: 10px;
+
+  padding: 6px 10px;
+
+  border-radius: 999px;
+
+  background: #eee9ff;
+  color: #684fc0;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.calendar-task-modal-card h3 {
+  margin: 0 40px 16px 0;
+
+  color: #17233f;
+
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.calendar-task-modal-info {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.calendar-task-modal-info p {
+  margin: 0;
+
+  color: #53617c;
+
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.calendar-task-modal-info strong {
+  color: #25304a;
+}
+
+
+/* =========================================================
+   MOBILE CALENDAR MODAL
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  .calendar-task-modal {
+    align-items: flex-end;
+
+    padding: 0;
+
+    background: rgba(20, 18, 42, 0.32);
+  }
+
+  .calendar-task-modal-card {
+    width: 100%;
+
+    padding: 24px 22px 28px;
+
+    border-radius: 26px 26px 0 0;
+
+    animation: calendarSheetUp 0.18s ease;
+  }
+
+  .calendar-task-modal-card h3 {
+    font-size: 20px;
+  }
+
+  .calendar-task-modal-info p {
+    font-size: 13px;
+  }
+}
+
+@keyframes calendarSheetUp {
+  from {
+    transform: translateY(18px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
