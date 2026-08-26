@@ -2236,9 +2236,10 @@ form button:hover {
   background: rgba(255, 255, 255, 0.98);
 
   border: 1px solid #ded9eb;
-  border-radius: 20px;
+  border-radius: 22px;
 
-  box-shadow: 0 10px 28px rgba(53, 65, 95, 0.10);
+  box-shadow:
+          0 12px 30px rgba(54, 45, 95, 0.10);
 }
 
 .calendar-view .fc {
@@ -2246,50 +2247,19 @@ form button:hover {
   max-width: 100%;
 }
 
-.calendar-task-event {
-  width: 100%;
+.calendar-view .fc-scrollgrid {
+  overflow: hidden;
 
-  display: flex;
-  flex-direction: column;
-
-  gap: 3px;
-  padding: 5px 6px;
-
-  white-space: normal;
+  border-radius: 10px;
 }
 
-.calendar-task-event strong {
-  width: 100%;
-
-  font-size: 11px;
-  font-weight: 750;
-  line-height: 1.25;
-
-  white-space: normal;
-  overflow: visible;
-  word-break: break-word;
-}
-
-.calendar-task-event span {
-  font-size: 10px;
-  font-weight: 650;
-  line-height: 1.2;
-
-  opacity: 0.82;
-  white-space: normal;
-}
-
-.calendar-view .fc-daygrid-event,
-.calendar-view .fc-event-main {
-  white-space: normal;
-}
-
-.calendar-view .fc-daygrid-event {
-  border-radius: 7px;
+.calendar-view .fc-toolbar {
+  margin-bottom: 18px;
 }
 
 .calendar-view .fc-toolbar-title {
   color: #17233f;
+
   font-size: 22px;
   font-weight: 750;
 }
@@ -2317,7 +2287,81 @@ form button:hover {
 }
 
 .calendar-view .fc-day-today {
-  background: #f3f0ff;
+  background: #fff8d8;
+}
+
+.calendar-view .fc-h-event,
+.calendar-view .fc-daygrid-event,
+.calendar-view .fc-daygrid-dot-event {
+  margin: 2px 4px;
+
+  border: none !important;
+  border-radius: 9px !important;
+
+  background: transparent !important;
+
+  overflow: hidden !important;
+
+  cursor: pointer;
+}
+
+.calendar-view .fc-event-main,
+.calendar-view .fc-event-main-frame {
+  border-radius: 9px !important;
+
+  overflow: hidden !important;
+}
+
+.calendar-view .fc-daygrid-event,
+.calendar-view .fc-event-main {
+  white-space: normal;
+}
+
+.calendar-task-event {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+  padding: 6px 8px;
+
+  border-radius: 9px !important;
+
+  overflow: hidden !important;
+
+  background: var(--calendar-event-bg, inherit);
+  color: var(--calendar-event-text, inherit);
+
+  white-space: normal;
+}
+
+.calendar-task-event strong {
+  width: 100%;
+
+  color: inherit;
+
+  font-size: 11px;
+  font-weight: 750;
+  line-height: 1.25;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.calendar-task-event span {
+  color: inherit;
+
+  font-size: 10px;
+  font-weight: 650;
+  line-height: 1.2;
+
+  opacity: 0.82;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .app.landing-app {
@@ -2553,98 +2597,6 @@ form button:hover {
   border-color: #a99bd4;
 }
 
-
-/* =========================================================
-   LANDING PAGE THEME SYNC
-   ========================================================= */
-
-body {
-  font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif;
-  background:
-          radial-gradient(circle at 8% 5%, rgba(111, 72, 214, 0.48), transparent 34%),
-          radial-gradient(circle at 92% 8%, rgba(96, 139, 220, 0.32), transparent 32%),
-          radial-gradient(circle at 48% 35%, rgba(155, 132, 220, 0.14), transparent 38%),
-          linear-gradient(135deg, #c9c1e7 0%, #d7d8ec 48%, #e4e8f2 100%);
-  background-attachment: fixed;
-}
-
-.top-bar {
-  margin-bottom: 18px;
-}
-
-.view-switch {
-  background: rgba(255, 255, 255, 0.92);
-  border-color: rgba(102, 80, 170, 0.13);
-  box-shadow: 0 8px 22px rgba(56, 45, 95, 0.09);
-}
-
-.tasks-section .task-card,
-.calendar-view,
-form,
-.focus-timer {
-  background: rgba(255, 255, 255, 0.98);
-  border-color: #ddd7ea;
-  box-shadow: 0 12px 30px rgba(54, 45, 95, 0.10);
-}
-
-.task-stages {
-  background: rgba(249, 247, 253, 0.97);
-  border-color: #e0daeb;
-}
-
-.stage-owner,
-.focus-mode,
-.add-stage-button {
-  background: #eee9ff;
-  color: #654db2;
-}
-
-.tasks-header span {
-  background: #e8e3fb;
-  color: #6550aa;
-}
-
-/* Keep semantic accents while preserving the purple/white base. */
-.completed-section .task-card {
-  background: #c7f1c5;
-  border-color: #aeddba;
-}
-
-.waiting-card {
-  background: #f7d89e;
-  border-color: #e2bc66;
-}
-
-.edit-task-button {
-  background: #c7dffa;
-  color: #3f6f9f;
-}
-
-.task-card-bottom .complete-task-button {
-  background: #c2f3c0;
-  color: #247a2a;
-}
-
-.delete-button {
-  background: #fcdee1;
-  color: #d7434b;
-}
-
-.add-task-toggle,
-.view-button.active,
-.task-card-bottom button:not(.delete-button):not(.complete-task-button):not(.edit-task-button),
-.timer-primary-button,
-form button {
-  background: linear-gradient(135deg, #704fd4, #5d3fbe);
-}
-
-.add-task-toggle:hover,
-.view-button.active:hover,
-.task-card-bottom button:not(.delete-button):not(.complete-task-button):not(.edit-task-button):hover,
-.timer-primary-button:hover,
-form button:hover {
-  background: linear-gradient(135deg, #6545cb, #5234b1);
-}
 
 /* =========================
    ACCOUNT / PROFILE
@@ -2916,8 +2868,7 @@ form button:hover {
 }
 
 /* =========================================================
-   MOBILE CALENDAR POLISH
-   Desktop calendar remains unchanged
+   MOBILE CALENDAR
    ========================================================= */
 
 @media (max-width: 600px) {
@@ -2934,9 +2885,9 @@ form button:hover {
     margin-top: 16px;
     padding: 10px;
 
-    overflow-x: hidden;
-
     border-radius: 16px;
+
+    overflow-x: hidden;
   }
 
   .calendar-view .fc {
@@ -2984,13 +2935,20 @@ form button:hover {
   .calendar-view .fc-daygrid-event {
     margin: 1px 2px;
 
-    border-radius: 6px;
+    border-radius: 7px !important;
+  }
+
+  .calendar-view .fc-event-main,
+  .calendar-view .fc-event-main-frame {
+    border-radius: 7px !important;
   }
 
   .calendar-task-event {
-    padding: 3px 4px;
-
     gap: 0;
+
+    padding: 4px 5px;
+
+    border-radius: 7px !important;
 
     overflow: hidden;
 
@@ -3014,6 +2972,8 @@ form button:hover {
     display: none;
   }
 }
+
+
 /* =========================================================
    CALENDAR TASK EXPANSION MODAL
    ========================================================= */
@@ -3042,11 +3002,10 @@ form button:hover {
 
   padding: 24px;
 
+  border: 1px solid #ddd7ea;
   border-radius: 24px;
 
   background: rgba(255, 255, 255, 0.98);
-
-  border: 1px solid #ddd7ea;
 
   box-shadow:
           0 24px 60px rgba(35, 28, 74, 0.22);
@@ -3065,6 +3024,8 @@ form button:hover {
   align-items: center;
   justify-content: center;
 
+  padding: 0;
+
   border: 1px solid #eadde3;
   border-radius: 10px;
 
@@ -3076,6 +3037,10 @@ form button:hover {
   font-weight: 800;
 
   cursor: pointer;
+}
+
+.calendar-task-modal-close:hover {
+  background: #ffe8eb;
 }
 
 .calendar-task-modal-label {
