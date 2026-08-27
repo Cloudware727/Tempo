@@ -2339,7 +2339,8 @@ form button:hover {
 .calendar-view .fc-daygrid-dot-event {
   margin: 2px 4px;
 
-  border: 1px solid !important;
+  border-width: 1px;
+  border-style: solid;
   border-radius: 7px !important;
 
   background: transparent !important;
@@ -2353,7 +2354,7 @@ form button:hover {
 .calendar-view .fc-event-main-frame {
   width: 100%;
 
-  border-radius: 7px !important;
+  border-radius: 6px !important;
 
   overflow: hidden !important;
 }
