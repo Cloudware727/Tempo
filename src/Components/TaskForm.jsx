@@ -77,7 +77,7 @@ function TaskForm(props){
             </div>
 
             <div>
-                <label>Estimated Effort</label>
+                <label>Estimated Completion Time</label>
                 <input
                     type="number"
                     value={estimatedeffort}
