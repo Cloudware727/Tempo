@@ -2339,7 +2339,7 @@ form button:hover {
 .calendar-view .fc-daygrid-dot-event {
   margin: 2px 4px;
 
-  border: none !important;
+  border: 1px solid !important;
   border-radius: 7px !important;
 
   background: transparent !important;
