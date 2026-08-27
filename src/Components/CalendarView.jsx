@@ -5,12 +5,14 @@ import themePlugin from "@fullcalendar/react/themes/classic"
 import "@fullcalendar/react/skeleton.css"
 import "@fullcalendar/react/themes/classic/theme.css"
 import "@fullcalendar/react/themes/classic/palette.css"
-import {useState} from "react";
+
+import { useState } from "react"
 
 
 function CalendarView(props) {
 
-    const [selectedTask, setSelectedTask] = useState(null);
+    const [selectedTask, setSelectedTask] = useState(null)
+
 
     function getTaskStatus(task) {
         if (task.completed) {
@@ -122,11 +124,6 @@ function CalendarView(props) {
 
             date: task.deadline,
 
-            color: colors.color,
-
-            contrastColor:
-            colors.contrastColor,
-
             extendedProps: {
                 task,
                 remainingEffort,
@@ -143,31 +140,46 @@ function CalendarView(props) {
         <div className="calendar-view">
 
             <FullCalendar
-                plugins={[dayGridPlugin]}
+                plugins={[
+                    dayGridPlugin,
+                    themePlugin
+                ]}
+                themeSystem="classic"
+
                 initialView="dayGridMonth"
+
+                headerToolbar={false}
+
                 events={events}
 
                 eventClick={(clickInfo) => {
-                    setSelectedTask(clickInfo.event.extendedProps.task)
+                    setSelectedTask(
+                        clickInfo.event.extendedProps.task
+                    )
                 }}
 
                 eventContent={(eventInfo) => (
                     <div
                         className="calendar-task-event"
                         style={{
-                            backgroundColor: eventInfo.event.extendedProps.color,
-                            color: eventInfo.event.extendedProps.contrastColor
+                            backgroundColor:
+                            eventInfo.event.extendedProps.color,
+
+                            color:
+                            eventInfo.event.extendedProps.contrastColor
                         }}
                     >
                         <strong>
                             {eventInfo.event.title}
                         </strong>
 
-                            <span>
-                                {eventInfo.event.extendedProps.completed
-                                    ? "Completed"
-                                    : `${formatHours(eventInfo.event.extendedProps.remainingEffort)} left`}
-                            </span>
+                        <span>
+                            {eventInfo.event.extendedProps.completed
+                                ? "Completed"
+                                : `${formatHours(
+                                    eventInfo.event.extendedProps.remainingEffort
+                                )} left`}
+                        </span>
                     </div>
                 )}
             />
@@ -190,8 +202,8 @@ function CalendarView(props) {
                         </button>
 
                         <span className="calendar-task-modal-label">
-                        Task details
-                    </span>
+                            Task details
+                        </span>
 
                         <h3>
                             {selectedTask.title}
@@ -206,12 +218,16 @@ function CalendarView(props) {
 
                             <p>
                                 <strong>Total:</strong>{" "}
-                                {formatHours(Number(selectedTask.estimatedEffort))}
+                                {formatHours(
+                                    Number(selectedTask.estimatedEffort)
+                                )}
                             </p>
 
                             <p>
                                 <strong>Done:</strong>{" "}
-                                {formatHours(Number(selectedTask.completedEffort))}
+                                {formatHours(
+                                    Number(selectedTask.completedEffort)
+                                )}
                             </p>
 
                             <p>

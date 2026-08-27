@@ -2247,12 +2247,37 @@ form button:hover {
   max-width: 100%;
 }
 
+/* Keep the outer calendar frame visible */
 .calendar-view .fc-scrollgrid {
   overflow: hidden;
 
+  border: 1px solid #dfe3ea !important;
   border-radius: 10px;
 }
 
+/* Restore the thin lines between all calendar cells */
+.calendar-view .fc-scrollgrid td,
+.calendar-view .fc-scrollgrid th {
+  border-color: #dfe3ea !important;
+}
+
+/* Weekday header */
+.calendar-view .fc-col-header-cell {
+  background: #ffffff;
+}
+
+.calendar-view .fc-col-header-cell-cushion {
+  padding: 7px 4px;
+
+  color: #17233f;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  text-decoration: none;
+}
+
+/* FullCalendar toolbar, kept here in case it is enabled later */
 .calendar-view .fc-toolbar {
   margin-bottom: 18px;
 }
@@ -2282,21 +2307,40 @@ form button:hover {
   background: #5b3dbe;
 }
 
+/* Normal day cells */
 .calendar-view .fc-daygrid-day {
   background: rgba(255, 255, 255, 0.55);
 }
 
-.calendar-view .fc-day-today {
-  background: #fff8d8;
+/* Highlight today's date */
+.calendar-view .fc-daygrid-day.fc-day-today {
+  background-color: #fff8d8 !important;
 }
 
+/* Date numbers */
+.calendar-view .fc-daygrid-day-number {
+  padding: 5px 6px;
+
+  color: #17233f;
+
+  font-size: 11px;
+
+  text-decoration: none;
+}
+
+/* Dates from previous / next month */
+.calendar-view .fc-day-other .fc-daygrid-day-number {
+  color: #a9afbd;
+}
+
+/* Calendar task wrapper supplied by FullCalendar */
 .calendar-view .fc-h-event,
 .calendar-view .fc-daygrid-event,
 .calendar-view .fc-daygrid-dot-event {
   margin: 2px 4px;
 
   border: none !important;
-  border-radius: 9px !important;
+  border-radius: 7px !important;
 
   background: transparent !important;
 
@@ -2307,9 +2351,15 @@ form button:hover {
 
 .calendar-view .fc-event-main,
 .calendar-view .fc-event-main-frame {
-  border-radius: 9px !important;
+  width: 100%;
+
+  border-radius: 7px !important;
 
   overflow: hidden !important;
+}
+
+.calendar-view .fc-event-main {
+  padding: 0 !important;
 }
 
 .calendar-view .fc-daygrid-event,
@@ -2317,6 +2367,7 @@ form button:hover {
   white-space: normal;
 }
 
+/* Actual task card */
 .calendar-task-event {
   width: 100%;
 
@@ -2324,14 +2375,12 @@ form button:hover {
   flex-direction: column;
 
   gap: 3px;
+
   padding: 6px 8px;
 
-  border-radius: 9px !important;
+  border-radius: 7px;
 
-  overflow: hidden !important;
-
-  background: var(--calendar-event-bg, inherit);
-  color: var(--calendar-event-text, inherit);
+  overflow: hidden;
 
   white-space: normal;
 }
@@ -2936,11 +2985,13 @@ form button:hover {
     margin: 1px 2px;
 
     border-radius: 7px !important;
+    overflow: hidden !important;
   }
 
   .calendar-view .fc-event-main,
   .calendar-view .fc-event-main-frame {
     border-radius: 7px !important;
+    overflow: hidden !important;
   }
 
   .calendar-task-event {
