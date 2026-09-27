@@ -373,7 +373,7 @@ function TaskCard(props) {
                     </button>
                 )}
 
-                {props.onCompleteTask && (
+                {props.onCompleteTask && stages.length === 0 &&  (
                     <button
                         type="button"
                         className="complete-task-button"

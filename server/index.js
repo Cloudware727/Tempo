@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser")
 const express = require('express')
 const { Pool } = require('pg')
 const cors = require('cors')
+const {rows} = require("pg/lib/query");
 
 const app = express()
 
@@ -236,49 +237,70 @@ app.patch('/tasks/:id', authenticateUser ,async (request, response) => {
     }
 })
 
-app.patch('/stages/:id',authenticateUser, async (request, response)=>{
+app.patch('/stages/:id', authenticateUser, async (request, response) => {
     const userId = request.user.id
     const id = request.params.id
     const { completed } = request.body
 
-    try{
+    try {
         const result = await pool.query(
             `
-            UPDATE task_stages AS stage
-            SET completed = $1
-            FROM tasks AS task
-            WHERE stage.id = $2
-              AND stage.task_id = task.id
-              AND task.user_id = $3
-            RETURNING
-                stage.id,
-                stage.task_id AS "taskId",
-                stage.stage_number AS "stageNumber",
-                stage.title,
-                stage.owner_type AS "ownerType",
-                stage.owner_name AS "ownerName",
-                stage.completed,
-                stage.follow_up_date::text AS "followUpDate"
+                UPDATE task_stages AS stage
+                SET completed = $1
+                    FROM tasks AS task
+                WHERE stage.id = $2
+                  AND stage.task_id = task.id
+                  AND task.user_id = $3
+                    RETURNING
+                    stage.id,
+                    stage.task_id AS "taskId",
+                    stage.stage_number AS "stageNumber",
+                    stage.title,
+                    stage.owner_type AS "ownerType",
+                    stage.owner_name AS "ownerName",
+                    stage.completed,
+                    stage.follow_up_date::text AS "followUpDate"
             `,
-            [completed, id,userId]
+            [completed, id, userId]
         )
+
         if (result.rows.length === 0) {
             return response.status(404).json({
                 error: 'Stage not found'
             })
         }
-            response.json(result.rows[0])
 
-        }
+        const updatedStage = result.rows[0]
+
+        await pool.query(
+            `
+            UPDATE tasks
+            SET completed = NOT EXISTS (
+                SELECT 1
+                FROM task_stages
+                WHERE task_id = $1
+                  AND completed = FALSE
+            )
+            WHERE id = $1
+              AND user_id = $2
+            RETURNING completed
+            `,
+            [updatedStage.taskId, userId]
+        )
+
+        response.json({
+            stage: updatedStage,
+            taskCompleted: rows[0].completed
+        })
+    }
 
     catch (error) {
-            console.error(error)
+        console.error(error)
 
-            response.status(500).json({
-                error: 'Database error'
-            })
-        }
-
+        response.status(500).json({
+            error: 'Database error'
+        })
+    }
 })
 
 app.patch('/tasks/:id/complete',authenticateUser,async(request,response)=>{
@@ -580,41 +602,67 @@ app.post(
 
 // Delete a stage
 app.delete("/stages/:id", authenticateUser, async (request, response) => {
-        const id = request.params.id
-        const userId = request.user.id
+    const id = request.params.id
+    const userId = request.user.id
 
-        try {
-            const result = await pool.query(
-                `
+    try {
+        const result = await pool.query(
+            `
                 DELETE FROM task_stages AS stage
-                USING tasks AS task
+                    USING tasks AS task
                 WHERE stage.id = $1
                   AND stage.task_id = task.id
                   AND task.user_id = $2
-                RETURNING
+                    RETURNING
                     stage.id,
                     stage.task_id AS "taskId"
-                `,
-                [id, userId]
-            )
+            `,
+            [id, userId]
+        )
 
-            if (result.rows.length === 0) {
-                return response.status(404).json({
-                    error: "Stage not found"
-                })
-            }
-
-            response.json(result.rows[0])
-
-        } catch (error) {
-            console.error(error)
-
-            response.status(500).json({
-                error: "Database error"
+        if (result.rows.length === 0) {
+            return response.status(404).json({
+                error: "Stage not found"
             })
         }
+
+        const deletedStage = result.rows[0]
+
+        const taskResult = await pool.query(
+            `
+            UPDATE tasks
+            SET completed =
+                EXISTS (
+                    SELECT 1
+                    FROM task_stages
+                    WHERE task_id = $1
+                )
+                AND NOT EXISTS (
+                    SELECT 1
+                    FROM task_stages
+                    WHERE task_id = $1
+                      AND completed = FALSE
+                )
+            WHERE id = $1
+              AND user_id = $2
+            RETURNING completed
+            `,
+            [deletedStage.taskId, userId]
+        )
+
+        response.json({
+            stage: deletedStage,
+            taskCompleted: taskResult.rows[0].completed
+        })
+
+    } catch (error) {
+        console.error(error)
+
+        response.status(500).json({
+            error: "Database error"
+        })
     }
-)
+})
 
 
 

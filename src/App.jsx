@@ -176,16 +176,24 @@ function App() {
             }
         );
 
-        const updatedStage = await response.json();
+        const result = await response.json();
 
         if (!response.ok) {
-            throw new Error(updatedStage.error);
+            throw new Error(result.error);
         }
+
+        const updatedStage = result.stage;
+        const taskCompleted = result.taskCompleted;
 
         setTasks((tasks) =>
             tasks.map((task) => {
+                if (task.id !== updatedStage.taskId) {
+                    return task;
+                }
+
                 return {
                     ...task,
+                    completed: taskCompleted,
                     stages: task.stages.map((stage) => {
                         if (stage.id === updatedStage.id) {
                             return updatedStage;
@@ -278,17 +286,21 @@ function App() {
             }
         )
 
-        const deletedStage = await response.json()
+        const result = await response.json()
 
         if (!response.ok) {
-            throw new Error(deletedStage.error)
+            throw new Error(result.error)
         }
+
+        const deletedStage = result.stage
+        const taskCompleted = result.taskCompleted
 
         setTasks(tasks =>
             tasks.map(task => {
                 if (task.id === deletedStage.taskId) {
                     return {
                         ...task,
+                        completed: taskCompleted,
                         stages: task.stages.filter(
                             stage => stage.id !== deletedStage.id
                         )
