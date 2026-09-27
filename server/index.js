@@ -272,7 +272,7 @@ app.patch('/stages/:id', authenticateUser, async (request, response) => {
 
         const updatedStage = result.rows[0]
 
-        await pool.query(
+        const taskResult = await pool.query(
             `
             UPDATE tasks
             SET completed = NOT EXISTS (
@@ -290,7 +290,7 @@ app.patch('/stages/:id', authenticateUser, async (request, response) => {
 
         response.json({
             stage: updatedStage,
-            taskCompleted: rows[0].completed
+            taskCompleted: taskResult.rows[0].completed
         })
     }
 
