@@ -484,7 +484,7 @@ function TaskCard(props) {
                     </button>
                 )}
 
-                {props.onAddDailyAllocation && props.deadline > today(
+                {props.onAddDailyAllocation && props.deadline > today &&(
                     <button
                         type="button"
                         className="work-today-button"
