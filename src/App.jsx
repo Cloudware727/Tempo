@@ -410,6 +410,8 @@ function App() {
                 task.id !== id
             )
         );
+
+        await getDailyAllocations()
     }
 
     async function completeTask(id) {
