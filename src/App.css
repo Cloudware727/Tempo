@@ -508,7 +508,7 @@ form button:hover {
   border-radius: 11px;
 }
 
-.task-card-bottom button:not(.delete-button):not(.complete-task-button):not(.edit-task-button) {
+.task-card-bottom button:not(.delete-button):not(.complete-task-button):not(.edit-task-button):not(.work-today-button) {
   height: 40px;
 
   padding: 0 16px;

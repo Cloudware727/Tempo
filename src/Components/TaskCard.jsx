@@ -115,6 +115,24 @@ function TaskCard(props) {
         return `${wholeHours}h ${minutes}m`
     }
 
+    function getTodayString() {
+        const today = new Date()
+
+        const year = today.getFullYear()
+
+        const month = String(
+            today.getMonth() + 1
+        ).padStart(2, "0")
+
+        const day = String(
+            today.getDate()
+        ).padStart(2, "0")
+
+        return `${year}-${month}-${day}`
+    }
+
+    const today = getTodayString()
+
     return (
         <div className="task-card">
             <div className="task-card-top">
@@ -466,7 +484,7 @@ function TaskCard(props) {
                     </button>
                 )}
 
-                {props.onAddDailyAllocation && (
+                {props.onAddDailyAllocation && props.deadline > today(
                     <button
                         type="button"
                         className="work-today-button"
