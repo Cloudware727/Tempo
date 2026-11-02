@@ -5,7 +5,7 @@ import CalendarView from "./Components/CalendarView.jsx"
 import HomePage from "./Components/HomePage.jsx"
 import LoginPage from "./Components/LoginPage.jsx"
 import RegisterPage from "./Components/RegisterPage.jsx"
-import StatisticsPage from "./StatisticsPage.jsx"
+import StatisticsPage from "./Components/StatisticsPage.jsx"
 import "./App.css";
 
 import { useEffect, useState } from "react";
