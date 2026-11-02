@@ -3439,3 +3439,82 @@ form button:hover {
     font-size: 11px;
   }
 }
+.account-stats {
+  display: block;
+
+  width: 100%;
+
+  margin-top: 6px;
+
+  padding: 10px 12px;
+
+  border-radius: 10px;
+
+  color: #555;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition: 0.15s ease;
+}
+
+.account-stats:hover {
+  background: #f3efff;
+
+  color: #6846d8;
+}
+
+.statistics-back {
+  width: fit-content;
+  height: 40px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 18px;
+  padding: 0 16px;
+
+  border-radius: 11px;
+
+  background:
+          linear-gradient(
+                  135deg,
+                  #704fd4,
+                  #5d3fbe
+          );
+
+  color: white;
+
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+
+  box-shadow:
+          0 6px 13px rgba(90, 65, 170, 0.15);
+
+  transition:
+          transform 0.12s ease,
+          box-shadow 0.15s ease,
+          background 0.15s ease;
+}
+
+.statistics-back:hover {
+  background:
+          linear-gradient(
+                  135deg,
+                  #6545cb,
+                  #5234b1
+          );
+
+  color: white;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+          0 8px 17px rgba(90, 65, 170, 0.21);
+}
