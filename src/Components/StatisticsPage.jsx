@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 function StatisticsPage({ tasks }) {
 
     function getCurrentStage(task) {
@@ -112,11 +114,20 @@ function StatisticsPage({ tasks }) {
         <div className="statistics-page">
 
             <div className="statistics-header">
+
+                <Link
+                    to="/tasks"
+                    className="statistics-back"
+                >
+                    ← Back to Tasks
+                </Link>
+
                 <h1>Statistics</h1>
 
                 <p>
                     Your workload and progress for today.
                 </p>
+
             </div>
 
 

@@ -31,7 +31,10 @@ function AccountDropdown({ user, onLogout }) {
                         Logout
                     </button>
 
-                    <Link to="/stats">
+                    <Link
+                        to="/stats"
+                        className="account-stats"
+                    >
                         My Stats
                     </Link>
 
