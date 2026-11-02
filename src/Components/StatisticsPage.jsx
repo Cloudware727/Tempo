@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom"
 
-function StatisticsPage({ tasks }) {
+function StatisticsPage({ tasks, dailyAllocations }) {
+
+    const allocatedWorkToday =
+        dailyAllocations.reduce(
+            (total, allocation) =>
+                total + Number(allocation.allocatedEffort),
+            0
+        )
 
     function getCurrentStage(task) {
         return task.stages?.find(
@@ -98,12 +105,14 @@ function StatisticsPage({ tasks }) {
     })
 
     //Sums all remaining effort from each task
-    const totalWorkToday =
+    const requiredWorkToday =
         todaysTasks.reduce(
             (total, task) =>
                 total + getRemainingEffort(task),
             0
         )
+
+    const totalWorkToday = requiredWorkToday+allocatedWorkToday
 
     //Finish time stored in a variable
     const estimatedFinish =
@@ -163,28 +172,28 @@ function StatisticsPage({ tasks }) {
 
                 <h2>Today's workload</h2>
 
+                <h3>Required</h3>
+
                 {todaysTasks.length === 0 ? (
                     <p className="statistics-empty">
-                        No work remaining for today.
+                        No required work remaining today.
                     </p>
                 ) : (
                     todaysTasks.map(task => (
-
                         <div
                             className="statistics-task"
                             key={task.id}
                         >
-
                             <div>
                                 <strong>
                                     {task.title}
                                 </strong>
 
                                 <span>
-                                    {task.deadline < today
-                                        ? `Overdue · ${task.deadline}`
-                                        : `Due today`}
-                                </span>
+                        {task.deadline < today
+                            ? `Overdue · ${task.deadline}`
+                            : "Due today"}
+                    </span>
                             </div>
 
                             <strong>
@@ -192,9 +201,43 @@ function StatisticsPage({ tasks }) {
                                     getRemainingEffort(task)
                                 )}
                             </strong>
-
                         </div>
+                    ))
+                )}
 
+
+                <h3 className="statistics-subheading">
+                    Chosen for today
+                </h3>
+
+                {dailyAllocations.length === 0 ? (
+                    <p className="statistics-empty">
+                        No additional work planned today.
+                    </p>
+                ) : (
+                    dailyAllocations.map(allocation => (
+                        <div
+                            className="statistics-task"
+                            key={allocation.id}
+                        >
+                            <div>
+                                <strong>
+                                    {allocation.taskTitle}
+                                </strong>
+
+                                {allocation.stageTitle && (
+                                    <span>
+                            Stage: {allocation.stageTitle}
+                        </span>
+                                )}
+                            </div>
+
+                            <strong>
+                                {formatHours(
+                                    Number(allocation.allocatedEffort)
+                                )}
+                            </strong>
+                        </div>
                     ))
                 )}
 
