@@ -834,6 +834,102 @@ function authenticateUser(request, response, next) {
         })
     }
 }
+// Adds an entry to the daily_allocations table where a user says for a specific task not due that day how much time they
+// want to allocate to it
+app.post("/daily-allocations", authenticateUser, async (request, response) => {
+    const userId = request.user.id
+
+    const {
+        taskId,
+        stageId,
+        allocationDate,
+        allocatedEffort
+    } = request.body
+
+    try {
+        const result = await pool.query(
+            `
+            INSERT INTO daily_allocations (
+                user_id,
+                task_id,
+                stage_id,
+                allocation_date,
+                allocated_effort
+            )
+            VALUES ($1, $2, $3, $4, $5)
+            RETURNING
+                id,
+                task_id AS "taskId",
+                stage_id AS "stageId",
+                allocation_date::text AS "allocationDate",
+                allocated_effort AS "allocatedEffort"
+            `,
+            [
+                userId,
+                taskId,
+                stageId || null,
+                allocationDate,
+                allocatedEffort
+            ]
+        )
+
+        response.status(201).json(result.rows[0])
+
+    } catch (error) {
+        console.error(error)
+
+        response.status(500).json({
+            error: "Database error"
+        })
+    }
+})
+
+//Retrieves a user's allocations based on the current date and uses joins to get the name of the task and those of the
+//stages if any exist
+app.get("/daily-allocations", authenticateUser, async (request, response) => {
+    const userId = request.user.id
+    const allocationDate = request.query.date
+
+    try {
+        const result = await pool.query(
+            `
+            SELECT
+                allocation.id,
+                allocation.task_id AS "taskId",
+                allocation.stage_id AS "stageId",
+                allocation.allocation_date::text AS "allocationDate",
+                allocation.allocated_effort AS "allocatedEffort",
+
+                task.title AS "taskTitle",
+
+                stage.title AS "stageTitle"
+
+            FROM daily_allocations AS allocation
+
+            JOIN tasks AS task
+                ON allocation.task_id = task.id
+
+            LEFT JOIN task_stages AS stage
+                ON allocation.stage_id = stage.id
+
+            WHERE allocation.user_id = $1
+              AND allocation.allocation_date = $2
+
+            ORDER BY allocation.id
+            `,
+            [userId, allocationDate]
+        )
+
+        response.json(result.rows)
+
+    } catch (error) {
+        console.error(error)
+
+        response.status(500).json({
+            error: "Database error"
+        })
+    }
+})
 
 app.get("/auth/me", authenticateUser, (request, response) => {
     response.json(request.user)

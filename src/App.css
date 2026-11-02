@@ -3518,3 +3518,287 @@ form button:hover {
   box-shadow:
           0 8px 17px rgba(90, 65, 170, 0.21);
 }
+/* =========================================================
+   WORK TODAY BUTTON
+   ========================================================= */
+
+.work-today-button {
+  height: 40px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 16px;
+
+  border: 1px solid #efb7d0;
+  border-radius: 11px;
+
+  background:
+          linear-gradient(
+                  135deg,
+                  #f5bfd8,
+                  #e89aba
+          );
+
+  color: #8f315d;
+
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow:
+          0 6px 13px rgba(197, 83, 135, 0.14);
+
+  transition:
+          transform 0.15s ease,
+          box-shadow 0.15s ease,
+          background 0.15s ease;
+}
+
+.work-today-button:hover {
+  background:
+          linear-gradient(
+                  135deg,
+                  #f2accb,
+                  #e487af
+          );
+
+  transform: translateY(-1px);
+
+  box-shadow:
+          0 8px 17px rgba(197, 83, 135, 0.20);
+}
+
+
+/* =========================================================
+   WORK TODAY MODAL
+   ========================================================= */
+
+.work-today-modal {
+  position: fixed;
+  inset: 0;
+
+  z-index: 3000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  background: rgba(20, 18, 42, 0.28);
+
+  backdrop-filter: blur(4px);
+}
+
+.work-today-modal-card {
+  position: relative;
+
+  width: min(420px, 100%);
+
+  padding: 24px;
+
+  border: 1px solid #ddd7ea;
+  border-radius: 22px;
+
+  background: rgba(255, 255, 255, 0.98);
+
+  box-shadow:
+          0 24px 60px rgba(35, 28, 74, 0.22);
+}
+
+
+/* =========================
+   CLOSE BUTTON
+   ========================= */
+
+.work-today-modal-close {
+  position: absolute;
+
+  top: 14px;
+  right: 14px;
+
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 1px solid #eadde3;
+  border-radius: 10px;
+
+  background: #fff5f6;
+  color: #c25565;
+
+  font: inherit;
+  font-size: 20px;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+.work-today-modal-close:hover {
+  background: #ffe8eb;
+}
+
+
+/* =========================
+   MODAL CONTENT
+   ========================= */
+
+.work-today-modal-card h3 {
+  margin: 0 40px 16px 0;
+
+  color: #17233f;
+
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.work-today-modal-card p {
+  margin: 0 0 12px;
+
+  color: #53617c;
+
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.work-today-modal-card p strong {
+  color: #25304a;
+}
+
+.work-today-modal-card label {
+  display: block;
+
+  margin-top: 16px;
+  margin-bottom: 7px;
+
+  color: #5b6b88;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+
+/* =========================
+   TIME SELECT
+   ========================= */
+
+.work-today-modal-card select {
+  width: 100%;
+  height: 42px;
+
+  padding: 0 12px;
+
+  border: 1px solid #d8deea;
+  border-radius: 11px;
+
+  background: #fbfcff;
+
+  color: #34415c;
+
+  font: inherit;
+  font-size: 13px;
+
+  cursor: pointer;
+}
+
+.work-today-modal-card select:focus {
+  outline: none;
+
+  border-color: #d87ba5;
+
+  box-shadow:
+          0 0 0 3px rgba(216, 123, 165, 0.12);
+}
+
+
+/* =========================
+   CONFIRM BUTTON
+   ========================= */
+
+.work-today-confirm {
+  width: 100%;
+  height: 42px;
+
+  margin-top: 18px;
+
+  border: 1px solid #efb7d0;
+  border-radius: 11px;
+
+  background:
+          linear-gradient(
+                  135deg,
+                  #f5bfd8,
+                  #e89aba
+          );
+
+  color: #8f315d;
+
+  font: inherit;
+  font-size: 13px;
+  font-weight: 750;
+
+  cursor: pointer;
+
+  box-shadow:
+          0 6px 13px rgba(197, 83, 135, 0.14);
+
+  transition:
+          transform 0.15s ease,
+          box-shadow 0.15s ease,
+          background 0.15s ease;
+}
+
+.work-today-confirm:hover {
+  background:
+          linear-gradient(
+                  135deg,
+                  #f2accb,
+                  #e487af
+          );
+
+  transform: translateY(-1px);
+
+  box-shadow:
+          0 8px 17px rgba(197, 83, 135, 0.20);
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  .work-today-button {
+    width: 100%;
+  }
+
+  .work-today-modal {
+    align-items: flex-end;
+
+    padding: 0;
+
+    background: rgba(20, 18, 42, 0.32);
+  }
+
+  .work-today-modal-card {
+    width: 100%;
+
+    padding: 24px 22px 28px;
+
+    border-radius: 26px 26px 0 0;
+  }
+
+  .work-today-modal-card h3 {
+    font-size: 20px;
+  }
+}

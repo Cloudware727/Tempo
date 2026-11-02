@@ -22,6 +22,12 @@ function TaskCard(props) {
     const [newStageOwnerName, setNewStageOwnerName] = useState("")
     const [newStageFollowUpDate, setNewStageFollowUpDate] = useState("")
 
+    const [showWorkToday, setShowWorkToday] = useState(false)
+    const [workTodayHours, setWorkTodayHours] = useState(1)
+    const currentStage = stages.find(
+        stage => stage.completed === false
+    )
+
     function startEditing() {
         setEditTitle(props.title)
         setEditDeadline(props.deadline)
@@ -86,6 +92,17 @@ function TaskCard(props) {
         setNewStageOwnerName("")
         setNewStageFollowUpDate("")
         setAddingStage(false)
+    }
+
+    //Uses our fnction to add work today to the table then hides the modal (turns the boolean to false)
+    async function addWorkToday() {
+        await props.onAddDailyAllocation(
+            props.id,
+            currentStage?.id || null,
+            Number(workTodayHours)
+        )
+
+        setShowWorkToday(false)
     }
 
     function formatHours(hours) {
@@ -227,6 +244,62 @@ function TaskCard(props) {
                             )
                         )}
                     </div>
+
+                    {showWorkToday && (
+                        <div
+                            className="work-today-modal"
+                            onClick={() => setShowWorkToday(false)}
+                        >
+                            <div
+                                className="work-today-modal-card"
+                                onClick={event => event.stopPropagation()}
+                            >
+                                <button
+                                    type="button"
+                                    className="work-today-modal-close"
+                                    onClick={() => setShowWorkToday(false)}
+                                >
+                                    ×
+                                </button>
+
+                                <h3>Work today</h3>
+
+                                <p>
+                                    <strong>{props.title}</strong>
+                                </p>
+
+                                {currentStage && (
+                                    <p>
+                                        Stage: {currentStage.title}
+                                    </p>
+                                )}
+
+                                <label>
+                                    Time to allocate
+                                </label>
+
+                                <select
+                                    value={workTodayHours}
+                                    onChange={event =>
+                                        setWorkTodayHours(event.target.value)
+                                    }
+                                >
+                                    <option value={0.5}>30 minutes</option>
+                                    <option value={1}>1 hour</option>
+                                    <option value={2}>2 hours</option>
+                                    <option value={3}>3 hours</option>
+                                </select>
+
+                                <button
+                                    type="button"
+                                    className="work-today-confirm"
+                                    onClick={addWorkToday}
+                                >
+                                    Add to today
+                                </button>
+                            </div>
+                        </div>
+                    )}
 
                     {props.onAddStage && !addingStage && (
                         <button
@@ -390,6 +463,16 @@ function TaskCard(props) {
                         onClick={() => props.onDeleteTask(props.id)}
                     >
                         Delete
+                    </button>
+                )}
+
+                {props.onAddDailyAllocation && (
+                    <button
+                        type="button"
+                        className="work-today-button"
+                        onClick={() => setShowWorkToday(true)}
+                    >
+                        Work today
                     </button>
                 )}
             </div>

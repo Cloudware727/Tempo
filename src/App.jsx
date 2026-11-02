@@ -8,7 +8,7 @@ import RegisterPage from "./Components/RegisterPage.jsx"
 import StatisticsPage from "./Components/StatisticsPage.jsx"
 import "./App.css";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import {
     Routes,
     Route,
@@ -31,12 +31,29 @@ function ProtectedRoute({ user, authLoading, children }) {
     return children
 }
 
+function getTodayString() {
+    const today = new Date()
+
+    const year = today.getFullYear()
+
+    const month = String(
+        today.getMonth() + 1
+    ).padStart(2, "0")
+
+    const day = String(
+        today.getDate()
+    ).padStart(2, "0")
+
+    return `${year}-${month}-${day}`
+}
+
 
 function App() {
     const [tasks, setTasks] = useState([]);
     const [showTaskForm, setShowTaskForm] = useState(false);
     const [focusTask, setFocusTask] = useState(null);
     const [tasksLoaded, setTasksLoaded] = useState(false)
+    const [dailyAllocations, setDailyAllocations] = useState([])
     const API_URL = import.meta.env.VITE_API_URL
 
     //To authenticate users
@@ -44,6 +61,26 @@ function App() {
     const [authLoading, setAuthLoading] = useState(true)
 
     const location = useLocation()
+
+    const getDailyAllocations = useCallback(async () => {
+        const today = getTodayString()
+
+        const response = await fetch(
+            `${API_URL}/daily-allocations?date=${today}`,
+            {
+                credentials: "include"
+            }
+        )
+
+        const allocations = await response.json()
+
+        if (!response.ok) {
+            throw new Error(allocations.error)
+        }
+
+        setDailyAllocations(allocations)
+
+    }, [API_URL])
 
     const showAppNavigation =
         location.pathname === "/tasks" ||
@@ -90,10 +127,11 @@ function App() {
         //If user is not logged in or has not been checked yet
         if (!user) {
             setTasks([])
+            setDailyAllocations([])
             return
         }
 
-        async function loadTasks() {
+        async function loadData() {
             const response = await fetch(
                 `${API_URL}/tasks`,
                 {
@@ -105,10 +143,12 @@ function App() {
 
             setTasks(data);
             setTasksLoaded(true)
+
+            await getDailyAllocations()
         }
 
-        loadTasks();
-    }, [user]);
+        loadData();
+    }, [user, API_URL, getDailyAllocations]);
 
     async function addTask(task) {
         const response = await fetch(
@@ -441,6 +481,37 @@ function App() {
         )
     }
 
+    async function addDailyAllocation(taskId, stageId, allocatedEffort) {
+        const allocationDate = getTodayString()
+
+        const response = await fetch(
+            `${API_URL}/daily-allocations`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                credentials: "include",
+                body: JSON.stringify({
+                    taskId: taskId,
+                    stageId: stageId,
+                    allocationDate: allocationDate,
+                    allocatedEffort: allocatedEffort
+                })
+            }
+        )
+
+        const newAllocation = await response.json()
+
+        if (!response.ok) {
+            throw new Error(newAllocation.error)
+        }
+
+        await getDailyAllocations()
+    }
+
+
+
     async function logout() {
         await fetch(`${API_URL}/auth/logout`, {
             method: "POST",
@@ -451,6 +522,8 @@ function App() {
         setTasks([])
         setFocusTask(null)
     }
+
+
 
     return (
         <div
@@ -568,7 +641,10 @@ function App() {
 
                 <Route
                     path="/stats"
-                    element={<StatisticsPage tasks={tasks}/>}
+                    element={<StatisticsPage
+                        tasks={tasks}
+                        dailyAllocations={dailyAllocations}
+                    />}
                 />
 
 
@@ -595,6 +671,7 @@ function App() {
                                 onEditStage={editStage}
                                 onAddStage={addStage}
                                 onDeleteStage={deleteStage}
+                                onAddDailyAllocation={addDailyAllocation}
                             />
                         </ProtectedRoute>
                     }

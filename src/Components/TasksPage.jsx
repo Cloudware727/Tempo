@@ -12,7 +12,8 @@ function TasksPage({
                        onExtendEstimate,
                        onEditStage,
                        onAddStage,
-                       onDeleteStage
+                       onDeleteStage,
+                       onAddDailyAllocation
                    }) {
 
     function getCurrentStage(task) {
@@ -141,6 +142,7 @@ function TasksPage({
                         onEditStage={onEditStage}
                         onAddStage={onAddStage}
                         onDeleteStage={onDeleteStage}
+                        onAddDailyAllocation={onAddDailyAllocation}
                     />
 
                 ))}
