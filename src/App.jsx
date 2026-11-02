@@ -5,7 +5,7 @@ import CalendarView from "./Components/CalendarView.jsx"
 import HomePage from "./Components/HomePage.jsx"
 import LoginPage from "./Components/LoginPage.jsx"
 import RegisterPage from "./Components/RegisterPage.jsx"
-import WaitingCard from "./Components/WaitingCard";
+import StatisticsPage from "./StatisticsPage.jsx"
 import "./App.css";
 
 import { useEffect, useState } from "react";
@@ -564,6 +564,11 @@ function App() {
                 <Route
                     path="/register"
                     element={<RegisterPage />}
+                />
+
+                <Route
+                    path="/stats"
+                    element={<StatisticsPage tasks={tasks}/>}
                 />
 
 

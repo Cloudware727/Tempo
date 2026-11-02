@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {Link} from "react-router-dom";
 
 function AccountDropdown({ user, onLogout }) {
 
@@ -29,6 +30,11 @@ function AccountDropdown({ user, onLogout }) {
                     >
                         Logout
                     </button>
+
+                    <Link to="/stats">
+                        My Stats
+                    </Link>
+
 
                 </div>
             )}

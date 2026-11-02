@@ -3184,3 +3184,258 @@ form button:hover {
     opacity: 1;
   }
 }
+
+/* =========================================================
+   STATISTICS PAGE
+   ========================================================= */
+
+.statistics-page {
+  width: 100%;
+
+  margin-top: 20px;
+}
+
+
+/* =========================
+   HEADER
+   ========================= */
+
+.statistics-header {
+  margin-bottom: 24px;
+}
+
+.statistics-header h1 {
+  margin: 0 0 6px;
+
+  color: #17233f;
+
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.statistics-header p {
+  margin: 0;
+
+  color: #70809d;
+
+  font-size: 14px;
+}
+
+
+/* =========================
+   SUMMARY CARDS
+   ========================= */
+
+.statistics-summary {
+  display: grid;
+
+  grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+
+  gap: 16px;
+
+  margin-bottom: 28px;
+}
+
+.statistics-card {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+
+  padding: 20px;
+
+  background: rgba(255, 255, 255, 0.98);
+
+  border: 1px solid #ded9eb;
+  border-radius: 18px;
+
+  box-shadow:
+          0 10px 26px rgba(54, 45, 95, 0.09);
+}
+
+.statistics-label {
+  color: #6b7892;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.statistics-card > strong {
+  color: #5d43b5;
+
+  font-size: 26px;
+  font-weight: 800;
+}
+
+
+/* =========================
+   TODAY'S WORKLOAD
+   ========================= */
+
+.statistics-today {
+  padding: 20px;
+
+  background: rgba(255, 255, 255, 0.98);
+
+  border: 1px solid #ded9eb;
+  border-radius: 20px;
+
+  box-shadow:
+          0 12px 30px rgba(54, 45, 95, 0.10);
+}
+
+.statistics-today h2 {
+  margin: 0 0 16px;
+
+  color: #17233f;
+
+  font-size: 20px;
+  font-weight: 750;
+}
+
+
+/* =========================
+   INDIVIDUAL TASK
+   ========================= */
+
+.statistics-task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 16px;
+
+  padding: 14px 0;
+
+  border-bottom: 1px solid #e7e9f0;
+}
+
+.statistics-task:last-child {
+  border-bottom: none;
+}
+
+.statistics-task > div {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+.statistics-task > div > strong {
+  color: #25304a;
+
+  font-size: 14px;
+  font-weight: 750;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.statistics-task > div > span {
+  color: #8993a8;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.statistics-task > strong {
+  flex-shrink: 0;
+
+  padding: 6px 10px;
+
+  border-radius: 999px;
+
+  background: #eee9ff;
+
+  color: #5d43b5;
+
+  font-size: 12px;
+  font-weight: 750;
+}
+
+
+/* =========================
+   EMPTY STATE
+   ========================= */
+
+.statistics-empty {
+  margin: 0;
+
+  padding: 18px;
+
+  border-radius: 14px;
+
+  background: #f7f6fb;
+
+  color: #78849a;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   STATISTICS MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  .statistics-page {
+    margin-top: 16px;
+  }
+
+  .statistics-header h1 {
+    font-size: 24px;
+  }
+
+  .statistics-summary {
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+
+    margin-bottom: 20px;
+  }
+
+  .statistics-card {
+    padding: 17px;
+
+    border-radius: 16px;
+  }
+
+  .statistics-card > strong {
+    font-size: 23px;
+  }
+
+  .statistics-today {
+    padding: 16px;
+
+    border-radius: 16px;
+  }
+
+  .statistics-today h2 {
+    font-size: 18px;
+  }
+
+  .statistics-task {
+    gap: 10px;
+
+    padding: 13px 0;
+  }
+
+  .statistics-task > div > strong {
+    font-size: 13px;
+  }
+
+  .statistics-task > strong {
+    font-size: 11px;
+  }
+}
